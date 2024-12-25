@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   def new
-    render turbo_stream
+    respond_to do |format|
+      format.turbo_stream
+    end
   end
 
   def destroy
@@ -9,6 +11,8 @@ class TasksController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     task = Task.new(id: params[:id])
   ensure
-    render turbo_stream
+    respond_to do |format|
+      format.turbo_stream
+    end
   end
 end
